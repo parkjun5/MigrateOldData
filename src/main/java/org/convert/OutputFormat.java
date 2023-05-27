@@ -5,6 +5,8 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
+import static org.convert.Main.WINDOW_SIZE;
+
 public class OutputFormat {
     private final long start;
     private final long end;
@@ -20,19 +22,19 @@ public class OutputFormat {
     private BigDecimal weightedSum;
     private BigDecimal volumeSum;
 
-    public OutputFormat(long start, int period) {
+    public OutputFormat(long start) {
         this.start = start;
-        this.end = start + period - 1;
+        this.end = start + WINDOW_SIZE - 1;
         this.volume = BigDecimal.ZERO;
         count = 1;
     }
 
-    public OutputFormat(long start, int period, Main.InputFormat value) {
+    public OutputFormat(long start, Main.InputFormat value) {
         long price = value.price();
         BigDecimal size = value.size();
 
         this.start = start;
-        this.end = start + period - 1;
+        this.end = start + WINDOW_SIZE - 1;
         this.count = 1;
         this.open = price;
         this.close = price;

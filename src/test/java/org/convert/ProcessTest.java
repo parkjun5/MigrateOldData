@@ -2,29 +2,29 @@ package org.convert;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
-import java.nio.charset.StandardCharsets;
-import java.util.zip.GZIPInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ProcessTest {
 
     @Test
     void convertTestData() throws IOException {
-        File file = new File("src/test/resources/.testKorbitKRW.csv");
-        FileInputStream fileInputStream = new FileInputStream(file);
-        InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
-        BufferedReader buffer = new BufferedReader(inputStreamReader);
-
-        int period =  30;
-        Main.processDataFromReader(period, buffer);
+        BufferedReader reader = Main.getFileBufferedReader();
+        Main.processDataFromReader(reader, 30);
     }
 
     @Test
     void convertRealData() throws IOException {
         Main.main(new String[]{""});
+    }
+
+    @Test
+    void windowSizeError() throws IOException {
+        BufferedReader reader = Main.getFileBufferedReader();
+        assertThrows(IllegalArgumentException.class, () -> Main.processDataFromReader(reader, 0));
+        assertThrows(IllegalArgumentException.class, () -> Main.processDataFromReader(reader, 86_401));
     }
 
 }

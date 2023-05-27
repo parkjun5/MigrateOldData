@@ -1,11 +1,11 @@
-# 비트코인 거래 내역 변환 마이그레이션 프로그램
+# 비트코인 거래 내역 마이그레이션 프로그램
 #### for Candlestick chart
 
 ## 목표 :
 <img width="335" alt="image" src="img/sample_csv_img.png">
 
 - 주어진 CSV 는 (쉼표로 구분된 값)는 과거의 비트코인 거래이다.
-- 수많은 데이터를 CandlestickChart 에 사용할 수 있는 값으로 빠르게 변환하는 마이그레이션 작업
+- 과거 수많은 데이터를 CandlestickChart 에 사용할 수 있는 값으로 빠르게 변환하는 마이그레이션 작업
 - csv 파일의 값을 임의의 기간(30초 ~ 1일)별로 나눠 JSON ARRAY 형식으로 표출한다.
 
 ### 거래 내역 변환 목표 프로세스 
